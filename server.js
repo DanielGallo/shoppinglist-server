@@ -1,9 +1,8 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const jwt = require('express-jwt')
-const jwtAuthz = require('express-jwt-authz')
-const jwks = require('jwks-rsa')
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 
 const app = express();
 const apiPort = 3001;
@@ -20,7 +19,7 @@ const jwtCheck = jwt({
     algorithms: ['RS256']
 });
 
-//app.use(jwtCheck);
+app.use(jwtCheck);
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -34,4 +33,4 @@ db.sequelize.sync();
 
 require('./routes/item.routes')(app);
 
-app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))
+app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`));
